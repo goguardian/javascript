@@ -1,4 +1,4 @@
-# Airbnb React/JSX Style Guide
+# GoGuardian React/JSX Style Guide
 
 *A mostly reasonable approach to React and JSX*
 
@@ -24,53 +24,54 @@
 
 ## Class vs React.createClass
 
-  - Use class extends React.Component unless you have a very good reason to use mixins.
+  <!-- - Use class extends React.Component unless you have a very good reason to use mixins. -->
+  - Use React.createClass instead of class extends React.Component for now.
 
   ```javascript
-  // bad
-  const Listing = React.createClass({
-    render() {
-      return <div />;
-    }
-  });
-  
-  // good
-  class Listing extends React.Component {
+  // don't
+  class Student extends React.Component {
     render() {
       return <div />;
     }
   }
+
+  // do
+  const Student = React.createClass({
+    render() {
+      return <div />;
+    }
+  });
   ```
 
 ## Naming
 
   - **Extensions**: Use `.jsx` extension for React components.
-  - **Filename**: Use PascalCase for filenames. E.g., `ReservationCard.jsx`.
+  - **Filename**: Use PascalCase for filenames. E.g., `ClassroomSession.jsx`.
   - **Reference Naming**: Use PascalCase for React components and camelCase for their instances:
     ```javascript
     // bad
-    const reservationCard = require('./ReservationCard');
+    import classroomSession from './ClassroomSession';
 
     // good
-    const ReservationCard = require('./ReservationCard');
+    import ClassroomSession from './ClassroomSession';
 
     // bad
-    const ReservationItem = <ReservationCard />;
+    const ClassroomSession = <ClassroomSession />;
 
     // good
-    const reservationItem = <ReservationCard />;
+    const classroomSession = <ClassroomSession />;
     ```
 
-    **Component Naming**: Use the filename as the component name. For example, `ReservationCard.jsx` should have a reference name of `ReservationCard`. However, for root components of a directory, use `index.jsx` as the filename and use the directory name as the component name:
+    **Component Naming**: Use the filename as the component name. For example, `ClassroomSession.jsx` should have a reference name of `ClassroomSession`. However, for root components of a directory, use `index.jsx` as the filename and use the directory name as the component name:
     ```javascript
     // bad
-    const Footer = require('./Footer/Footer.jsx')
+    import Footer from './Footer/Footer.jsx'
 
     // bad
-    const Footer = require('./Footer/index.jsx')
+    import Footer from './Footer/index.jsx'
 
     // good
-    const Footer = require('./Footer')
+    import Footer from './Footer'
     ```
 
 
@@ -80,15 +81,15 @@
     ```javascript
     // bad
     export default React.createClass({
-      displayName: 'ReservationCard',
+      displayName: 'ClassroomSession',
       // stuff goes here
     });
 
     // good
-    class ReservationCard extends React.Component {
-    }
- 
-    export default ReservationCard;
+    const ClassroomSession = React.createClass({
+    });
+
+    export default ClassroomSession;
     ```
 
 ## Alignment
@@ -102,8 +103,7 @@
     // good
     <Foo
       superLongParam="bar"
-      anotherSuperLongParam="baz"
-    />
+      anotherSuperLongParam="baz" />
 
     // if props fit in one line then keep it on the same line
     <Foo bar="bar" />
@@ -111,14 +111,13 @@
     // children get indented normally
     <Foo
       superLongParam="bar"
-      anotherSuperLongParam="baz"
-    >
+      anotherSuperLongParam="baz">
       <Spazz />
     </Foo>
     ```
 
 ## Quotes
-  - Always use double quotes (`"`) for JSX attributes, but single quotes for all other JS.
+  - Always use double quotes (`"`) for JSX attributes, but single quotes for all other JS. This keeps JSX as close to markup as possible.
     ```javascript
     // bad
     <Foo bar='bar' />
@@ -156,14 +155,12 @@
     // bad
     <Foo
       UserName="hello"
-      phone_number={12345678}
-    />
+      phone_number={12345678} />
 
     // good
     <Foo
       userName="hello"
-      phoneNumber={12345678}
-    />
+      phoneNumber={12345678} />
     ```
 
 ## Parentheses
@@ -202,18 +199,18 @@
     <Foo className="stuff" />
     ```
 
-  - If your component has multi-line properties, close its tag on a new line.
+  - If your component has multi-line properties, close its tag on the last property. Avoid closing tags on their own line.
     ```javascript
     // bad
     <Foo
       bar="bar"
-      baz="baz" />
+      baz="baz"
+    />
 
     // good
     <Foo
       bar="bar"
-      baz="baz"
-    />
+      baz="baz" />
     ```
 
 ## Methods
@@ -229,7 +226,7 @@
     });
 
     // good
-    class extends React.Component {
+    const Student = React.createClass({
       onClickSubmit() {
         // do stuff
       }
@@ -240,8 +237,8 @@
 
 ## Ordering
 
-  - Ordering for class extends React.Component:
-  
+  <!-- - Ordering for class extends React.Component:
+
   1. constructor
   1. optional static methods
   1. getChildContext
@@ -261,32 +258,32 @@
 
   ```javascript
   import React, { Component, PropTypes } from 'react';
-  
+
   const propTypes = {
     id: PropTypes.number.isRequired,
     url: PropTypes.string.isRequired,
     text: PropTypes.string,
   };
-  
+
   const defaultProps = {
     text: 'Hello World',
   };
-  
+
   class Link extends Component {
     static methodsAreOk() {
       return true;
     }
-  
+
     render() {
       return <a href={this.props.url} data-id={this.props.id}>{this.props.text}</a>
     }
   }
-  
+
   Link.propTypes = propTypes;
   Link.defaultProps = defaultProps;
-  
+
   export default Link;
-  ```
+  ``` -->
 
   - Ordering for React.createClass:
 
