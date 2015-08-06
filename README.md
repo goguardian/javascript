@@ -2,7 +2,7 @@
 
 *A mostly reasonable approach to JavaScript*
 
-[For the ES5-only guide click here](es5/).
+[For ES5, refer to Airbnb's ES5-only guide here](https://github.com/airbnb/javascript/tree/master/es5).
 
 ## Table of Contents
 

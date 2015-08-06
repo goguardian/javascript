@@ -213,6 +213,23 @@
     ```
 
 ## Methods
+  - Use object method shorthand for internal methods of a React component.
+  ```javascript
+  // don't
+  const Student = React.createClass({
+    render: function() {
+      return <div />
+    }
+  });
+
+  // do
+  const Student = React.createClass({
+    render() {
+      return <div />
+    }
+  });
+  ```
+
   - Do not use underscore prefix for internal methods of a React component.
     ```javascript
     // bad
