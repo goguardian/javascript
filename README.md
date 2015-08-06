@@ -138,7 +138,7 @@
     const item = {};
     ```
 
-  - [3.2](#3.2) <a name='3.2'></a> If your code will be executed in browsers in script context, don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61). It’s OK to use them in ES6 modules and server-side code.
+  - [3.2](#3.2) <a name='3.2'></a> Don't use [reserved words](http://es5.github.io/#x7.6.1) as keys. It won't work in IE8. [More info](https://github.com/airbnb/javascript/issues/61).
 
     ```javascript
     // bad
@@ -154,53 +154,8 @@
     };
     ```
 
-  - [3.3](#3.3) <a name='3.3'></a> Use readable synonyms in place of reserved words.
-
-    ```javascript
-    // bad
-    const superman = {
-      class: 'alien',
-    };
-
-    // bad
-    const superman = {
-      klass: 'alien',
-    };
-
-    // good
-    const superman = {
-      type: 'alien',
-    };
-    ```
-
-  <a name="es6-computed-properties"></a>
-  - [3.4](#3.4) <a name='3.4'></a> Use computed property names when creating objects with dynamic property names.
-
-  > Why? They allow you to define all the properties of an object in one place.
-
-    ```javascript
-
-    function getKey(k) {
-      return `a key named ${k}`;
-    }
-
-    // bad
-    const obj = {
-      id: 5,
-      name: 'San Francisco',
-    };
-    obj[getKey('enabled')] = true;
-
-    // good
-    const obj = {
-      id: 5,
-      name: 'San Francisco',
-      [getKey('enabled')]: true,
-    };
-    ```
-
   <a name="es6-object-shorthand"></a>
-  - [3.5](#3.5) <a name='3.5'></a> Use object method shorthand.
+  - [3.3](#3.3) <a name='3.3'></a> Use object method shorthand.
 
     ```javascript
     // bad
@@ -223,7 +178,7 @@
     ```
 
   <a name="es6-object-concise"></a>
-  - [3.6](#3.6) <a name='3.6'></a> Use property value shorthand.
+  - [3.4](#3.4) <a name='3.4'></a> Use property value shorthand.
 
   > Why? It is shorter to write and descriptive.
 
@@ -241,7 +196,7 @@
     };
     ```
 
-  - [3.7](#3.7) <a name='3.7'></a> Group your shorthand properties at the beginning of your object declaration.
+  - [3.5](#3.5) <a name='3.5'></a> Group your shorthand properties at the beginning of your object declaration.
 
   > Why? It's easier to tell which properties are using the shorthand.
 
@@ -311,12 +266,6 @@
 
     // good
     const itemsCopy = [...items];
-    ```
-  - [4.4](#4.4) <a name='4.4'></a> To convert an array-like object to an array, use Array#from.
-
-    ```javascript
-    const foo = document.querySelectorAll('.foo');
-    const nodes = Array.from(foo);
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -503,38 +452,11 @@
     }
     ```
 
-  <a name="es6-rest"></a>
-  - [7.6](#7.6) <a name='7.6'></a> Never use `arguments`, opt to use rest syntax `...` instead.
-
-  > Why? `...` is explicit about which arguments you want pulled. Plus rest arguments are a real Array and not Array-like like `arguments`.
+  <a name="es6-default-parameters"></a>
+  - [7.6](#7.6) <a name='7.6'></a> Use default parameter syntax rather than mutating function arguments.
 
     ```javascript
     // bad
-    function concatenateAll() {
-      const args = Array.prototype.slice.call(arguments);
-      return args.join('');
-    }
-
-    // good
-    function concatenateAll(...args) {
-      return args.join('');
-    }
-    ```
-
-  <a name="es6-default-parameters"></a>
-  - [7.7](#7.7) <a name='7.7'></a> Use default parameter syntax rather than mutating function arguments.
-
-    ```javascript
-    // really bad
-    function handleThings(opts) {
-      // No! We shouldn't mutate function arguments.
-      // Double bad: if opts is falsy it'll be set to an object which may
-      // be what you want but it can introduce subtle bugs.
-      opts = opts || {};
-      // ...
-    }
-
-    // still bad
     function handleThings(opts) {
       if (opts === void 0) {
         opts = {};
@@ -547,34 +469,6 @@
       // ...
     }
     ```
-
-  - [7.8](#7.8) <a name='7.8'></a> Avoid side effects with default parameters
-
-  > Why? They are confusing to reason about.
-
-  ```javascript
-  var b = 1;
-  // bad
-  function count(a = b++) {
-    console.log(a);
-  }
-  count();  // 1
-  count();  // 2
-  count(3); // 3
-  count();  // 3
-  ```
-
-- [7.9](#7.9) <a name='7.9'></a> Never use the Function constructor to create a new function.
-
-  > Why? Creating a function in this way evaluates a string similarly to eval(), which opens vulnerabilities.
-
-  ```javascript
-  // bad
-  var add = new Function('a', 'b', 'return a + b');
-
-  // still bad
-  var subtract = Function('a', 'b', 'return a - b');
-  ```
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -602,38 +496,35 @@
 
 ## Constructors
 
-  - [9.1](#9.1) <a name='9.1'></a> Always use `class`. Avoid manipulating `prototype` directly.
-
-  > Why? `class` syntax is more concise and easier to reason about.
+  - [9.1](#9.1) <a name='9.1'></a> Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
 
     ```javascript
-    // bad
-    function Queue(contents = []) {
-      this._queue = [...contents];
-    }
-    Queue.prototype.pop = function() {
-      const value = this._queue[0];
-      this._queue.splice(0, 1);
-      return value;
+    function Jedi() {
+      console.log('new jedi');
     }
 
+    // bad
+    Jedi.prototype = {
+      fight: function fight() {
+        console.log('fighting');
+      },
+
+      block: function block() {
+        console.log('blocking');
+      }
+    };
 
     // good
-    class Queue {
-      constructor(contents = []) {
-        this._queue = [...contents];
-      }
-      pop() {
-        const value = this._queue[0];
-        this._queue.splice(0, 1);
-        return value;
-      }
-    }
+    Jedi.prototype.fight = function fight() {
+      console.log('fighting');
+    };
+
+    Jedi.prototype.block = function block() {
+      console.log('blocking');
+    };
     ```
 
-  - [9.2](#9.2) <a name='9.2'></a> Use `extends` for inheritance.
-
-  > Why? It is a built-in way to inherit prototype functionality without breaking `instanceof`.
+  - [9.2](#9.2) <a name='9.2'></a> Methods can return `this` to help with method chaining.
 
     ```javascript
     // bad
@@ -654,61 +545,6 @@
     }
     ```
 
-  - [9.3](#9.3) <a name='9.3'></a> Methods can return `this` to help with method chaining.
-
-    ```javascript
-    // bad
-    Jedi.prototype.jump = function() {
-      this.jumping = true;
-      return true;
-    };
-
-    Jedi.prototype.setHeight = function(height) {
-      this.height = height;
-    };
-
-    const luke = new Jedi();
-    luke.jump(); // => true
-    luke.setHeight(20); // => undefined
-
-    // good
-    class Jedi {
-      jump() {
-        this.jumping = true;
-        return this;
-      }
-
-      setHeight(height) {
-        this.height = height;
-        return this;
-      }
-    }
-
-    const luke = new Jedi();
-
-    luke.jump()
-      .setHeight(20);
-    ```
-
-
-  - [9.4](#9.4) <a name='9.4'></a> It's okay to write a custom toString() method, just make sure it works successfully and causes no side effects.
-
-    ```javascript
-    class Jedi {
-      constructor(options = {}) {
-        this.name = options.name || 'no name';
-      }
-
-      getName() {
-        return this.name;
-      }
-
-      toString() {
-        return `Jedi - ${this.getName()}`;
-      }
-    }
-    ```
-
 **[⬆ back to top](#table-of-contents)**
 
 
@@ -720,15 +556,15 @@
 
     ```javascript
     // bad
-    const AirbnbStyleGuide = require('./AirbnbStyleGuide');
-    module.exports = AirbnbStyleGuide.es6;
+    const styleGuide = require('./styleGuide');
+    module.exports = StyleGuide.es6;
 
     // ok
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
-    export default AirbnbStyleGuide.es6;
+    import StyleGuide from './styleGuide';
+    export default StyleGuide.es6;
 
     // best
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './styleGuide';
     export default es6;
     ```
 
@@ -738,10 +574,10 @@
 
     ```javascript
     // bad
-    import * as AirbnbStyleGuide from './AirbnbStyleGuide';
+    import * as StyleGuide from './styleGuide';
 
     // good
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
+    import StyleGuide from './styleGuide';
     ```
 
   - [10.3](#10.3) <a name='10.3'></a>And do not export directly from an import.
@@ -751,11 +587,11 @@
     ```javascript
     // bad
     // filename es6.js
-    export { es6 as default } from './airbnbStyleGuide';
+    export { es6 as default } from './goguardianStyleGuide';
 
     // good
     // filename es6.js
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './GoGuardianStyleGuide';
     export default es6;
     ```
 
