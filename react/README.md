@@ -45,14 +45,14 @@
 ## Naming
 
   - **Extensions**: Use `.jsx` extension for React components.
-  - **Filename**: Use PascalCase for filenames. E.g., `ClassroomSession.jsx`.
+  - **Filename**: Use camelCase for filenames. E.g., `classroomSession.jsx`.
   - **Reference Naming**: Use PascalCase for React components and camelCase for their instances:
     ```javascript
     // bad
-    import classroomSession from './ClassroomSession';
+    import classroomSession from './classroomSession';
 
     // good
-    import ClassroomSession from './ClassroomSession';
+    import ClassroomSession from './classroomSession';
 
     // bad
     const ClassroomSession = <ClassroomSession />;
