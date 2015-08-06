@@ -600,7 +600,6 @@
 
 **[⬆ back to top](#table-of-contents)**
 
-<!-- // TODO -->
 ## Constructors
 
   - [9.1](#9.1) <a name='9.1'></a> Always use `class`. Avoid manipulating `prototype` directly.
