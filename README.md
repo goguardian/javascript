@@ -1,6 +1,4 @@
-[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/airbnb/javascript?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-
-# Airbnb JavaScript Style Guide() {
+# GoGuardian JavaScript Style Guide() {
 
 *A mostly reasonable approach to JavaScript*
 
@@ -600,25 +598,9 @@
     });
     ```
 
-  - [8.2](#8.2) <a name='8.2'></a> If the function body fits on one line and there is only a single argument, feel free to omit the braces and parentheses, and use the implicit return. Otherwise, add the parentheses, braces, and use a `return` statement.
-
-  > Why? Syntactic sugar. It reads well when multiple functions are chained together.
-
-  > Why not? If you plan on returning an object.
-
-    ```javascript
-    // good
-    [1, 2, 3].map(x => x * x);
-
-    // good
-    [1, 2, 3].reduce((total, n) => {
-      return total + n;
-    }, 0);
-    ```
-
 **[⬆ back to top](#table-of-contents)**
 
-
+<!-- // TODO -->
 ## Constructors
 
   - [9.1](#9.1) <a name='9.1'></a> Always use `class`. Avoid manipulating `prototype` directly.
