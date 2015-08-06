@@ -929,9 +929,6 @@
       return false;
 
     // good
-    if (test) return false;
-
-    // good
     if (test) {
       return false;
     }
@@ -945,7 +942,19 @@
     }
     ```
 
-  - [16.2](#16.2) <a name='16.2'></a> If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your
+  - [16.2](#16.2) <a name='16.2'></a> Avoid one-liner `if` blocks.
+
+  ```javascript
+  // don't
+  if (test) return false
+
+  // do
+  if (test) {
+    return false;
+  }
+  ```
+
+  - [16.3](#16.3) <a name='16.3'></a> If you're using multi-line blocks with `if` and `else`, put `else` on the same line as your
     `if` block's closing brace.
 
     ```javascript
