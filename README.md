@@ -2,6 +2,8 @@
 
 *A mostly reasonable approach to JavaScript*
 
+[React/JSX Style Guide](/react)
+
 ## Table of Contents
 
   1. [Types](#types)
