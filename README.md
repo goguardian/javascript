@@ -2,8 +2,6 @@
 
 *A mostly reasonable approach to JavaScript*
 
-[For ES5, refer to Airbnb's ES5-only guide here](https://github.com/airbnb/javascript/tree/master/es5).
-
 ## Table of Contents
 
   1. [Types](#types)
@@ -14,7 +12,6 @@
   1. [Strings](#strings)
   1. [Functions](#functions)
   1. [Arrow Functions](#arrow-functions)
-  1. [Constructors](#constructors)
   1. [Modules](#modules)
   1. [Iterators and Generators](#iterators-and-generators)
   1. [Properties](#properties)
@@ -29,6 +26,7 @@
   1. [Type Casting & Coercion](#type-casting--coercion)
   1. [Naming Conventions](#naming-conventions)
   1. [Accessors](#accessors)
+  1. [Constructors](#constructors)
   1. [Events](#events)
   1. [jQuery](#jquery)
   1. [ECMAScript 5 Compatibility](#ecmascript-5-compatibility)
@@ -464,6 +462,7 @@
 
 **[⬆ back to top](#table-of-contents)**
 
+
 ## Arrow Functions
 
   - [8.1](#8.1) <a name='8.1'></a> When you must use function expressions (as when passing an anonymous function), use arrow function notation.
@@ -482,59 +481,6 @@
     [1, 2, 3].map((x) => {
       return x * x;
     });
-    ```
-
-**[⬆ back to top](#table-of-contents)**
-
-## Constructors
-
-  - [9.1](#9.1) <a name='9.1'></a> Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
-
-    ```javascript
-    function Jedi() {
-      console.log('new jedi');
-    }
-
-    // bad
-    Jedi.prototype = {
-      fight: function fight() {
-        console.log('fighting');
-      },
-
-      block: function block() {
-        console.log('blocking');
-      }
-    };
-
-    // good
-    Jedi.prototype.fight = function fight() {
-      console.log('fighting');
-    };
-
-    Jedi.prototype.block = function block() {
-      console.log('blocking');
-    };
-    ```
-
-  - [9.2](#9.2) <a name='9.2'></a> Methods can return `this` to help with method chaining.
-
-    ```javascript
-    // bad
-    const inherits = require('inherits');
-    function PeekableQueue(contents) {
-      Queue.apply(this, contents);
-    }
-    inherits(PeekableQueue, Queue);
-    PeekableQueue.prototype.peek = function() {
-      return this._queue[0];
-    }
-
-    // good
-    class PeekableQueue extends Queue {
-      peek() {
-        return this._queue[0];
-      }
-    }
     ```
 
 **[⬆ back to top](#table-of-contents)**
@@ -588,6 +534,7 @@
     ```
 
 **[⬆ back to top](#table-of-contents)**
+
 
 ## Iterators and Generators
 
@@ -1597,6 +1544,60 @@
     Jedi.prototype.get = function(key) {
       return this[key];
     };
+    ```
+
+**[⬆ back to top](#table-of-contents)**
+
+
+## Constructors
+
+  - [9.1](#9.1) <a name='9.1'></a> Assign methods to the prototype object, instead of overwriting the prototype with a new object. Overwriting the prototype makes inheritance impossible: by resetting the prototype you'll overwrite the base!
+
+    ```javascript
+    function Jedi() {
+      console.log('new jedi');
+    }
+
+    // bad
+    Jedi.prototype = {
+      fight: function fight() {
+        console.log('fighting');
+      },
+
+      block: function block() {
+        console.log('blocking');
+      }
+    };
+
+    // good
+    Jedi.prototype.fight = function fight() {
+      console.log('fighting');
+    };
+
+    Jedi.prototype.block = function block() {
+      console.log('blocking');
+    };
+    ```
+
+  - [9.2](#9.2) <a name='9.2'></a> Methods can return `this` to help with method chaining.
+
+    ```javascript
+    // bad
+    const inherits = require('inherits');
+    function PeekableQueue(contents) {
+      Queue.apply(this, contents);
+    }
+    inherits(PeekableQueue, Queue);
+    PeekableQueue.prototype.peek = function() {
+      return this._queue[0];
+    }
+
+    // good
+    class PeekableQueue extends Queue {
+      peek() {
+        return this._queue[0];
+      }
+    }
     ```
 
 **[⬆ back to top](#table-of-contents)**
