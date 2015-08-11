@@ -82,7 +82,7 @@
  * Best practices
  */
     "block-scoped-var": 2,
-    "consistent-return": 2,
+    "consistent-return": 0,
     "curly": 2,
     "default-case": 2,
     "dot-notation": [2, {"allowKeywords": true}],
@@ -132,7 +132,7 @@
     "func-names": 1,
     "indent": [2, 2],
     "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
-    "new-cap": 2,
+    "new-cap": [2, {"newIsCap": true, "capIsNew": false}],
     "no-mixed-spaces-and-tabs": 2,
     "no-multiple-empty-lines": [2, {"max": 2}],
     "no-nested-ternary": 2,
