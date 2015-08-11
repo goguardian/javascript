@@ -141,7 +141,7 @@
     "no-trailing-spaces": [2, {"skipBlankLines": true}],
     "no-underscore-dangle": 0,
     "one-var": [2, "never"],
-    "operator-linebreak": [1, "before"],
+    "operator-linebreak": 1,
     "padded-blocks": [2, "never"],
     "quotes": [2, "single", "avoid-escape"],
     "semi-spacing": 2,
