@@ -57,7 +57,7 @@
 /**
  * Possible errors
  */
-    "comma-dangle": [2, "always-multiline"],
+    "comma-dangle": [2, "never"],
     "no-cond-assign": [2, "always"],
     "no-console": 1,
     "no-constant-condition": 1,
