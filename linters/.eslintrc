@@ -178,8 +178,8 @@
       "order": [
         "lifecycle",
         "everything-else",
-        "/^on.+$/",
         "/^get.+$/",
+        "/^on.+$/",
         "/^render.+$/",
         "render",
       ]
