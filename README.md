@@ -135,13 +135,13 @@
     ```javascript
     // bad
     const superman = {
-      default: { clark: 'kent' },
+      default: {clark: 'kent'},
       private: true,
     };
 
     // good
     const superman = {
-      defaults: { clark: 'kent' },
+      defaults: {clark: 'kent'},
       hidden: true,
     };
     ```
@@ -279,12 +279,12 @@
 
     // good
     function getFullName(obj) {
-      const { firstName, lastName } = obj;
+      const {firstName, lastName} = obj;
       return `${firstName} ${lastName}`;
     }
 
     // best
-    function getFullName({ firstName, lastName }) {
+    function getFullName({firstName, lastName}) {
       return `${firstName} ${lastName}`;
     }
     ```
@@ -319,11 +319,11 @@
     // good
     function processInput(input) {
       // then a miracle occurs
-      return { left, right, top, bottom };
+      return {left, right, top, bottom};
     }
 
     // the caller selects only the data they need
-    const { left, right } = processInput(input);
+    const {left, right} = processInput(input);
     ```
 
 
@@ -504,7 +504,7 @@
     export default StyleGuide.es6;
 
     // best
-    import { es6 } from './styleGuide';
+    import {es6} from './styleGuide';
     export default es6;
     ```
 
@@ -527,11 +527,11 @@
     ```javascript
     // bad
     // filename es6.js
-    export { es6 as default } from './goguardianStyleGuide';
+    export {es6 as default} from './goguardianStyleGuide';
 
     // good
     // filename es6.js
-    import { es6 } from './GoGuardianStyleGuide';
+    import {es6} from './GoGuardianStyleGuide';
     export default es6;
     ```
 
@@ -557,11 +557,15 @@
 
     // good
     let sum = 0;
-    numbers.forEach((num) => sum += num);
+    numbers.forEach((num) => {
+      sum += num);
+    }
     sum === 15;
 
     // best (use the functional force)
-    const sum = numbers.reduce((total, num) => total + num, 0);
+    const sum = numbers.reduce((total, num) => {
+      total + num
+    }, 0);
     sum === 15;
     ```
 
@@ -1237,7 +1241,7 @@
     const story = [
       once,
       upon,
-      aTime,
+      aTime
     ];
 
     // bad
@@ -1253,52 +1257,11 @@
       firstName: 'Ada',
       lastName: 'Lovelace',
       birthYear: 1815,
-      superPower: 'computers',
+      superPower: 'computers'
     };
     ```
 
-  - [19.2](#19.2) <a name='19.2'></a> Additional trailing comma: **Yup.**
-
-  > Why? This leads to cleaner git diffs. Also, transpilers like Babel will remove the additional trailing comma in the transpiled code which means you don't have to worry about the [trailing comma problem](es5/README.md#commas) in legacy browsers.
-
-    ```javascript
-    // bad - git diff without trailing comma
-    const hero = {
-         firstName: 'Florence',
-    -    lastName: 'Nightingale'
-    +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb graph', 'modern nursing']
-    }
-
-    // good - git diff with trailing comma
-    const hero = {
-         firstName: 'Florence',
-         lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing'],
-    }
-
-    // bad
-    const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
-    };
-
-    const heroes = [
-      'Batman',
-      'Superman'
-    ];
-
-    // good
-    const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully',
-    };
-
-    const heroes = [
-      'Batman',
-      'Superman',
-    ];
-    ```
+    - [19.2](#19.2) <a name='19.2'></a> Trailing commas: **Nope.**
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -1624,7 +1587,7 @@
 
     ```javascript
     // good
-    $(this).trigger('listingUpdated', { listingId : listing.id });
+    $(this).trigger('listingUpdated', {listingId : listing.id});
 
     ...
 
