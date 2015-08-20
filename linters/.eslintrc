@@ -130,7 +130,7 @@
     "comma-style": 2,
     "eol-last": 2,
     "func-names": 1,
-    "indent": [2, 2],
+    "indent": [2, 2, {"SwitchCase": 1}],
     "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
     "new-cap": [2, {"newIsCap": true, "capIsNew": false}],
     "no-mixed-spaces-and-tabs": 2,
