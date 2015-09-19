@@ -24,22 +24,22 @@
 
 ## Class vs React.createClass
 
-  - Use React.createClass instead of class extends React.Component for now.
+  - Use class extends React.Component unless you have a good reason to use mixins.
 
   ```javascript
-  // don't
-  class Student extends React.Component {
-    render() {
-      return <div />;
-    }
-  }
-
-  // do
+  // ok
   const Student = React.createClass({
     render() {
       return <div />;
     }
   });
+
+  // good
+  class Student extends React.Component {
+    render() {
+      return <div />;
+    }
+  }
   ```
 
 ## Naming
@@ -85,10 +85,8 @@
     });
 
     // good
-    const ClassroomSession = React.createClass({
-    });
-
-    export default ClassroomSession;
+    export default class ClassroomSession extends React.Component {
+    }
     ```
 
 ## Alignment
@@ -242,7 +240,7 @@
     });
 
     // good
-    const Student = React.createClass({
+    class Student extends React.createClass({
       onClickSubmit() {
         // do stuff
       }
@@ -272,8 +270,8 @@
   1. componentWillUpdate
   1. componentDidUpdate
   1. componentWillUnmount
-  1. *clickHandlers or eventHandlers* like onClickSubmit() or onChangeDescription()
   1. *getter methods for render* like getSelectReason() or getFooterContent()
+  1. *clickHandlers or eventHandlers* like onClickSubmit() or onChangeDescription()
   1. *Optional render methods* like renderNavigation() or renderProfilePicture()
   1. render
 
