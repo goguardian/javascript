@@ -1,10 +1,14 @@
 ## `.eslintrc`
 
-Our `.eslintrc` requires the following NPM packages to be installed globally on your local machine:
+Our `.eslintrc` requires the following NPM packages to be installed globally:
 
 - `eslint`
 - `babel-eslint`
 - `eslint-plugin-react`
+
+```
+npm install -g eslint babel-eslint eslint-plugin-react
+```
 
 We only require one `.eslintrc` in the root of our repo.
 
