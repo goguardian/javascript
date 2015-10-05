@@ -490,7 +490,7 @@
 
 ## Modules
 
-  - [10.1](#10.1) <a name='10.1'></a> Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system.
+  - [10.1](#10.1) <a name='10.1'></a> Always use modules (`import`/`export`) over a non-standard module system. You can always transpile to your preferred module system. The only exception is if the module path is dynamic.
 
   > Why? Modules are the future, let's start using the future now.
 
@@ -506,6 +506,9 @@
     // best
     import {es6} from './styleGuide';
     export default es6;
+
+    // exception
+    require('./' + filePathVar);
     ```
 
   - [10.2](#10.2) <a name='10.2'></a> Do not use wildcard imports.
