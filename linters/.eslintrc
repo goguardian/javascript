@@ -42,9 +42,22 @@
 /**
  * ES6
  */
+    "arrow-body-style": 2,
+    "arrow-parens": 2,
     "arrow-spacing": 2,
+    "constructor-super": 2,
+    "generator-star-spacing": 0,
+    "no-arrow-condition": 0,
+    "no-class-assign": 2,
+    "no-const-assign": 2,
+    "no-dupe-class-members": 2,
+    "no-this-before-super": 2,
     "no-var": 2,
+    "object-shorthand": [2, "properties"],
+    "prefer-arrow-callback": 0,
     "prefer-const": 2,
+    "prefer-spread": 2,
+    "prefer-template": 2
 
 /**
  * Variables
@@ -90,6 +103,7 @@
     "guard-for-in": 2,
     "no-alert": 1,
     "no-caller": 2,
+    "no-case-declarations": 0,
     "no-else-return": 2,
     "no-eq-null": 2,
     "no-eval": 2,
@@ -116,7 +130,7 @@
     "no-sequences": 2,
     "no-throw-literal": 2,
     "no-with": 2,
-    "radix": 2,
+    "radix": 0,
     "vars-on-top": 2,
     "wrap-iife": [2, "any"],
     "yoda": 2,
@@ -142,7 +156,7 @@
     "no-trailing-spaces": [2, {"skipBlankLines": true}],
     "no-underscore-dangle": 0,
     "one-var": [2, "never"],
-    "operator-linebreak": [2, "after", {"overrides": {"?": "after", ":": "after"}}],
+    "operator-linebreak": [2, "after"],
     "padded-blocks": [2, "never"],
     "quotes": [2, "single", "avoid-escape"],
     "semi-spacing": 2,
@@ -159,9 +173,16 @@
  */
     "react/display-name": 0,
     "react/jsx-boolean-value": 2,
+    "react/jsx-closing-bracket-location": [1, "after-props"],
     "react/jsx-curly-spacing": [2, "never"],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-key": 2,
+    "react/jsx-max-props-per-line": 1,
+    "react/jsx-no-bind": 0,
     "react/jsx-no-duplicate-props": 2,
+    "react/jsx-no-literals": 0,
     "react/jsx-no-undef": 2,
+    "react/jsx-pascal-case": 2,
     "react/jsx-sort-prop-types": 0,
     "react/jsx-sort-props": 0,
     "react/jsx-uses-react": 2,
