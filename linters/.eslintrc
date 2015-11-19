@@ -57,7 +57,7 @@
     "prefer-arrow-callback": 0,
     "prefer-const": 2,
     "prefer-spread": 2,
-    "prefer-template": 2
+    "prefer-template": 2,
 
 /**
  * Variables
@@ -100,7 +100,7 @@
     "default-case": 2,
     "dot-notation": [2, {"allowKeywords": true}],
     "eqeqeq": 2,
-    "guard-for-in": 2,
+    "guard-for-in": 1,
     "no-alert": 1,
     "no-caller": 2,
     "no-case-declarations": 0,
